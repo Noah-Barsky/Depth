@@ -20,6 +20,8 @@ namespace Depth
 {
 	public class Depth : Mod
 	{
+		public static Mod BaseMod;
+
 		public Depth()
 		{
             Properties = new ModProperties()
@@ -29,6 +31,16 @@ namespace Depth
                 AutoloadSounds = true,
             };
 		}
+
+        public override void Unload()
+        {
+            BaseMod = null;
+        }
+
+        public override void PostSetupContent()
+        {
+            BaseMod = ModLoader.GetMod("BaseMod");
+        }
 
         public static NPC NearestNPC(Vector2 pos, float distance = -1f, bool lightning = false, bool lineOfSight = true)
         {
