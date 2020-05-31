@@ -13,7 +13,6 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Depth.BarrenBiome
 {
-    //actual shadow biome gen
     public class BarrenBiome 
     {
         
