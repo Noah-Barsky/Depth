@@ -16,18 +16,15 @@ using static Terraria.ModLoader.ModContent;
 using Depth.BaseMod;
 using Depth.BarrenBiome;
 
-namespace Depth 
-{
-    public class DepthWorld : ModWorld
-    {
+namespace Depth {
+    public class DepthWorld : ModWorld {
         public static bool spawnOre = false;
 
         //Tiles for zoning
         public static int BarrenDirtTile;
         public static int BarrenStoneTile;
 
-        private void GenBarren(GenerationProgress progress)
-        {
+        private void GenBarren(GenerationProgress progress) {
             progress.Message = "Malificus souls crafting a wasteland..";
 
             int startPositionX = ((int)(Main.maxTilesX * 0.53f));
@@ -44,10 +41,13 @@ namespace Depth
             tasks.Insert(shiniesIndex + 8, new PassLegacy("Mod Biomes", GenBarren));
         }
 
-        public override void ResetNearbyTileEffects()
-        {
+        public override void ResetNearbyTileEffects() {
             DepthPlayer modPlayer = Main.LocalPlayer.GetModPlayer<DepthPlayer>();
             BarrenDirtTile = 0;
+        }
+
+        public override void TileCountsAvailable(int[] tileCounts) {
+            BarrenDirtTile = tileCounts[mod.TileType("BarrenDirtTile")];
         }
     }
 }

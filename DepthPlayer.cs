@@ -16,35 +16,29 @@ using Terraria.UI;
 using Depth;
 
 
-namespace Depth
-{
-    public class DepthPlayer : ModPlayer
-    {
+namespace Depth {
+    public class DepthPlayer : ModPlayer {
         public bool GenBarren;
 
-        public bool ZoneBarren;
+        public bool ZoneBarren = false;
 
-        public override void UpdateBiomes()
-        {
+        public override void UpdateBiomes() {
             ZoneBarren = DepthWorld.BarrenDirtTile > 150;
         }
 
-        public override void CopyCustomBiomesTo(Player other)
-        {
+        public override void CopyCustomBiomesTo(Player other) {
             DepthPlayer modOther = other.GetModPlayer<DepthPlayer>();
             modOther.ZoneBarren = ZoneBarren;
         }
 
-        public override void SendCustomBiomes(BinaryWriter writer)
-        {
+        public override void SendCustomBiomes(BinaryWriter writer) {
 
             BitsByte flags = new BitsByte();
             flags[0] = ZoneBarren;
             writer.Write(flags);
         }
-		
-        public override void ReceiveCustomBiomes(BinaryReader reader)
-        {
+
+        public override void ReceiveCustomBiomes(BinaryReader reader) {
             BitsByte flags = reader.ReadByte();
             ZoneBarren = flags[0];
 
