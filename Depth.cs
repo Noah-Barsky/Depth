@@ -20,7 +20,8 @@ namespace Depth
 {
 	public class Depth : Mod
 	{
-		public static Mod BaseMod;
+        
+        public static Mod BaseMod;
 
 		public Depth()
 		{
