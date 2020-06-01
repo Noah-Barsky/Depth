@@ -13,7 +13,6 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Depth.BarrenBiome
 {
-    //actual shadow biome gen
     public class BarrenBiome 
     {
         
@@ -29,6 +28,7 @@ namespace Depth.BarrenBiome
             {
                 //color to tile, these are all the color coded tiles, you can replace these with your own custom tiles of course
                 [new Color(166, 215, 222)] = ModContent.TileType<BarrenDirtTile>(),   
+                [new Color(91, 124, 143)] = ModContent.TileType<BarrenStoneTile>(),
                 [new Color(255, 255, 255)] = -1, //leaving something white will not be affected during gen
                 [Color.Black] = -2 //turn into air
             };
