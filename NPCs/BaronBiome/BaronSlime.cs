@@ -2,18 +2,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Depth.NPCs.BaronBiome
-{
-    public class BaronSlime : ModNPC
-    {
-        public override void SetStaticDefaults()
-        {
+namespace Depth.NPCs.BaronBiome {
+    public class BaronSlime : ModNPC {
+        public override void SetStaticDefaults() {
             DisplayName.SetDefault("Baron Muk");
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.BlueSlime];
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             npc.aiStyle = 1;
             aiType = NPCID.BlueSlime;
             npc.npcSlots = 2f;
@@ -28,24 +24,19 @@ namespace Depth.NPCs.BaronBiome
             animationType = 8;
             animationType = NPCID.BlueSlime;
         }
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-        {
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale) {
             npc.lifeMax = (int)(npc.lifeMax * 0.5f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.5f);
         }
 
-        public override void AI()
-        {
-            if (npc.life < 15)
-            {
+        public override void AI() {
+            if (npc.life < 15) {
                 npc.defense += 3;
             }
         }
 
-        public override void NPCLoot()
-        {
-            if (Main.rand.Next(2) == 0)
-            {
+        public override void NPCLoot() {
+            if (Main.rand.Next(2) == 0) {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("HardenGel"), Main.rand.Next(1, 2));
             }
         }

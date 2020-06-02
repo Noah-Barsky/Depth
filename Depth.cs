@@ -21,6 +21,15 @@ namespace Depth {
 
         public static Mod BaseMod;
 
+        public override void Load() {
+            if (Main.netMode != NetmodeID.Server) {
+                // load the  effect
+                Ref<Effect> barrenScreenRef = new Ref<Effect>(GetEffect("Effects/BarrenSky"));
+                // bind the effect
+                Filters.Scene["BarrenSky"] = new Filter(new ScreenShaderData(barrenScreenRef, "SkyTint").UseColor(0.5f, 0.9f, 0.9f), EffectPriority.Medium);
+            }
+        }
+
         public Depth() {
         }
 
