@@ -13,7 +13,8 @@ using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.UI;
-using Depth;
+using Depth.Dusts;
+using static Terraria.ModLoader.ModContent;
 
 
 namespace Depth {
@@ -22,8 +23,17 @@ namespace Depth {
 
         public bool ZoneBarren = false;
 
+        public override void UpdateBiomeVisuals() {
+            player.ManageSpecialBiomeVisuals("BarrenSky", ZoneBarren);
+        }
+
         public override void UpdateBiomes() {
             ZoneBarren = DepthWorld.BarrenDirtTile > 150;
+            if (ZoneBarren) {
+                if (player.velocity.X != 0 && player.velocity.Y == 0) {
+                    Dust.NewDust(new Vector2(player.position.X, player.position.Y + player.Size.Y), 5, 5, DustType<BarrenthornDust>());
+                }
+            }
         }
 
         public override void CopyCustomBiomesTo(Player other) {
