@@ -23,9 +23,7 @@ float2 uZoom;
 float4 SkyTint(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
 {
     float4 colour = tex2D(uImage0, coords);
-    float luminosity = (colour.r + colour.g + colour.b) / 3;
-    colour.rgb = luminosity * uColor;
-    return colour * sampleColor;
+    return colour * uIntensity;
 }
 
 technique Technique1

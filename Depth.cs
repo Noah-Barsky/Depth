@@ -26,7 +26,7 @@ namespace Depth {
                 // load the  effect
                 Ref<Effect> barrenScreenRef = new Ref<Effect>(GetEffect("Effects/BarrenSky"));
                 // bind the effect
-                Filters.Scene["BarrenSky"] = new Filter(new ScreenShaderData(barrenScreenRef, "SkyTint").UseColor(0.5f, 0.9f, 0.9f), EffectPriority.Medium);
+                Filters.Scene["BarrenSky"] = new Filter(new ScreenShaderData(barrenScreenRef, "SkyTint").UseIntensity(0.8f), EffectPriority.Medium);
             }
         }
 

@@ -22,9 +22,26 @@ namespace Depth {
         public bool GenBarren;
 
         public bool ZoneBarren = false;
+        private float ZoneBarrenIntensity = 1;
 
         public override void UpdateBiomeVisuals() {
-            player.ManageSpecialBiomeVisuals("BarrenSky", ZoneBarren);
+            if (Main.netMode != NetmodeID.Server) {
+                if (ZoneBarren) {
+                    if (ZoneBarrenIntensity > 0.35) ZoneBarrenIntensity -= 0.004f;
+                    Main.NewText(ZoneBarrenIntensity);
+                    Filters.Scene.Activate("BarrenSky");
+                    Filters.Scene["BarrenSky"].GetShader().UseIntensity(ZoneBarrenIntensity);
+                } else {
+                    if (ZoneBarrenIntensity < 1) {
+                        ZoneBarrenIntensity += 0.004f;
+                        if (ZoneBarrenIntensity > 1) ZoneBarrenIntensity = 1;
+                        Filters.Scene["BarrenSky"].GetShader().UseIntensity(ZoneBarrenIntensity);
+                        Main.NewText(ZoneBarrenIntensity);
+                    } else {
+                        Filters.Scene["BarrenSky"].Deactivate();
+                    }
+                }
+            }
         }
 
         public override void UpdateBiomes() {
