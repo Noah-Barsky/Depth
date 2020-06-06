@@ -24,6 +24,11 @@ namespace Depth.NPCs.BaronBiome {
             animationType = 8;
             animationType = NPCID.BlueSlime;
         }
+        
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) {
+            return Main.tile[(int)(spawnInfo.spawnTileX), (int)(spawnInfo.spawnTileY)].type == mod.TileType("BarrenDirtTile") ? 0.35f : 0f;
+        }
+        
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale) {
             npc.lifeMax = (int)(npc.lifeMax * 0.5f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.5f);
