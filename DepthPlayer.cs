@@ -20,7 +20,7 @@ using static Terraria.ModLoader.ModContent;
 namespace Depth {
     public class DepthPlayer : ModPlayer {
         public bool GenBarren;
-
+        public int soulProjectile;
         public bool ZoneBarren = false;
         private float ZoneBarrenIntensity = 1;
 
@@ -86,5 +86,11 @@ namespace Depth {
 
         }
 
+        public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff) {
+            bool petProjectileNotSpawned = player.ownedProjectileCounts[ProjectileType<Projectiles.PlasmaBall>()] <= 0;
+            if (!petProjectileNotSpawned && !player.HasBuff(mod.BuffType("SoulBuff"))) {
+                Main.projectile[soulProjectile].active = false;
+            }
+        }
     }
 }

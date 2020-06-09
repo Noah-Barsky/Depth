@@ -3,11 +3,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace Depth.Items.BarrenBiome.Armor
-{
+namespace Depth.Items.BarrenBiome.Armor {
     [AutoloadEquip(EquipType.Head)]
-    public class DarkmancerHood : ModItem
-    {
+    public class DarkmancerHood : ModItem {
         public override void SetStaticDefaults() {
             Tooltip.SetDefault("Increases player health by 15");
         }
@@ -31,6 +29,8 @@ namespace Depth.Items.BarrenBiome.Armor
         public override void UpdateArmorSet(Player player) {
             player.setBonus = "Increases player damage by 5%.";
             player.allDamage += 0.05f;
+            player.AddBuff(BuffType<Buffs.SoulBuff>(), 2);
+
         }
     }
 }
