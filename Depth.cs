@@ -40,6 +40,14 @@ namespace Depth {
         public override void PostSetupContent() {
             BaseMod = ModLoader.GetMod("BaseMod");
         }
+        
+        //Barren Biome Music
+         public override void UpdateMusic(ref int music, ref MusicPriority priority) {
+              if (Main.LocalPlayer.GetModPlayer<DepthPlayer>().ZoneBarren) {
+                    music = GetSoundSlot(SoundType.Music, "Sounds/Music/BarrenBiome");
+                    priority = MusicPriority.BiomeMedium;
+              }
+         }
 
         public static NPC NearestNPC(Vector2 pos, float distance = -1f, bool lightning = false, bool lineOfSight = true) {
             float shortestDistanceSq = -1;
