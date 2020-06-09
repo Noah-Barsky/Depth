@@ -5,7 +5,6 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Depth.Items.BarrenBiome.Armor
 {
-//edit to show it works
     [AutoloadEquip(EquipType.Head)]
     public class DarkmancerHood : ModItem
     {
