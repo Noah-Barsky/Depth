@@ -27,10 +27,13 @@ namespace Depth {
         private void DrawHaze() {
             for (int k = (int)Math.Floor(player.position.X / 16) - 55; k < (int)Math.Floor(player.position.X / 16) + 55; k++) {
                 for (int i = (int)Math.Floor(player.position.Y / 16) - 30; i < (int)Math.Floor(player.position.Y / 16) + 30; i++) {
-                    if (!Main.tile[k, i - 1].active() && !Main.tile[k, i - 2].active() && Main.tile[k, i].active() && Main.tile[k, i].type != TileID.Trees) {
+                    if ((!Main.tile[k, i - 1].active() && !Main.tile[k, i - 2].active() && Main.tile[k, i].active() && Main.tile[k, i].type != TileID.Trees) || (Main.tile[k, i - 1].type == TileID.Trees && Main.tile[k, i].type == mod.TileType("BarrenDirtTile"))) {
                         if (Main.rand.Next(0, 40) == 2) {
                             Dust.NewDust(new Vector2((k - 2) * 16, (i - 1) * 16), 5, 5, DustType<HazeDust>());
                         }
+                    }
+                    if (Main.tile[k, i].type == TileID.Trees && !Main.tile[k, i - 1].active() && !Main.tile[k - 1, i].active() && !Main.tile[k + 1, i].active()) {
+                        Lighting.AddLight(new Vector2(k * 16, i * 16), new Vector3(1, 1, 1));
                     }
                 }
             }
