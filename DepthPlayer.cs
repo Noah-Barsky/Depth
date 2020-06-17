@@ -87,7 +87,7 @@ namespace Depth {
         }
 
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff) {
-            bool petProjectileNotSpawned = player.ownedProjectileCounts[ProjectileType<Projectiles.PlasmaBall>()] <= 0;
+            bool petProjectileNotSpawned = player.ownedProjectileCounts[ProjectileType<Projectiles.DarkmancerSpirit>()] <= 0;
             if (!petProjectileNotSpawned && !player.HasBuff(mod.BuffType("SoulBuff"))) {
                 Main.projectile[soulProjectile].active = false;
             }
